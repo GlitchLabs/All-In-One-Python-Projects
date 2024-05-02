@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import requests
+from security import safe_requests
 
 
 def getMovieDetails(movieName):
@@ -8,7 +8,7 @@ def getMovieDetails(movieName):
     movieDetails = {}
     movienamequery = query+'+'.join(movieName.strip().split(' '))
 
-    html = requests.get(url+movienamequery+'&title_type=feature')
+    html = safe_requests.get(url+movienamequery+'&title_type=feature')
     bs = BeautifulSoup(html.text, 'html.parser')
     result = bs.find('h3', {'class': 'lister-item-header'})
 
@@ -18,7 +18,7 @@ def getMovieDetails(movieName):
     movielink = url+result.a.attrs['href']
     movieDetails['name'] = result.a.text
 
-    html = requests.get(movielink)
+    html = safe_requests.get(movielink)
     bs = BeautifulSoup(html.text, 'html.parser')
     try:
         movieDetails['year'] = bs.find('span', {'id': 'titleYear'}).a.text
@@ -50,7 +50,7 @@ def getMovieDetails(movieName):
     except IndexError:
         movieDetails['cast']=movieDetails['writers']
         movieDetails['writers']='Not found'
-    html = requests.get(movielink+'plotsummary')
+    html = safe_requests.get(movielink+'plotsummary')
     bs = BeautifulSoup(html.text, 'html.parser')
 
     movieDetails['plot'] = bs.find(

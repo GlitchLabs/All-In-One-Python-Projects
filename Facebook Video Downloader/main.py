@@ -1,4 +1,5 @@
 import os, re, requests, wget
+from security import safe_requests
 
 root = os.path.dirname(os.path.abspath(__file__))
 path = os.path.join(root, "Downloads")
@@ -7,7 +8,7 @@ if not os.path.exists(path):
 
 link = input("Enter video link: ")
 try:
-    r = requests.get(link)
+    r = safe_requests.get(link)
     if r.status_code == requests.codes.ok:
         try:
             sd_url = re.search('sd_src:"(.+?)"', r.text)[1]

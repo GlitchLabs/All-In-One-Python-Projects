@@ -64,7 +64,7 @@ if __name__ == "__main__":
             speak("Playing Music")
 
         elif "ip address" in query:
-            ip = requests.get("https://api.ipify.org").text
+            ip = requests.get("https://api.ipify.org", timeout=60).text
             speak(f"Your Ip address is {ip}")
 
         elif 'wikipedia' in query:

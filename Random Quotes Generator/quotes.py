@@ -4,7 +4,7 @@ import csv
 
 url='http://quotes.toscrape.com'
 
-html=requests.get(url)
+html=requests.get(url, timeout=60)
 bs=BeautifulSoup(html.text,'html.parser')
 
 try:
@@ -27,7 +27,7 @@ try:
         if not next: 
             break
 
-        html=requests.get(url+next.a.attrs['href'])
+        html=requests.get(url+next.a.attrs['href'], timeout=60)
         bs=BeautifulSoup(html.text,'html.parser')
 except:
     print('Unknown Error!!!')

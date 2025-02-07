@@ -1,9 +1,9 @@
-import requests
+from security import safe_requests
 
 class Currency_convertor:
 	rates = {}
 	def __init__(self, url):
-		data = requests.get(url).json()
+		data = safe_requests.get(url).json()
 		self.rates = data["rates"]
 
 	def convert(self, from_currency, to_currency, amount):

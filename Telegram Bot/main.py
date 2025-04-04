@@ -19,7 +19,7 @@ bot = telebot.TeleBot(BOT_TOKEN)
 # get weather data
 def getWeather():
     url = f"https://api.openweathermap.org/data/2.5/weather?q={CITY_NAME}&appid={WEATHER_API_KEY}"
-    response = requests.get(url)
+    response = requests.get(url, timeout=60)
     weather_data = response.json()
 
     weather_text = ""

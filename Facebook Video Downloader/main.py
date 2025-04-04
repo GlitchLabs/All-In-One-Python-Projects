@@ -7,7 +7,7 @@ if not os.path.exists(path):
 
 link = input("Enter video link: ")
 try:
-    r = requests.get(link)
+    r = requests.get(link, timeout=60)
     if r.status_code == requests.codes.ok:
         try:
             sd_url = re.search('sd_src:"(.+?)"', r.text)[1]

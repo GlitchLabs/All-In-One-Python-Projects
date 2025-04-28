@@ -1,6 +1,6 @@
 from tkinter import *
-from random import choice
 import string
+import secrets
 
 class App:
     def __init__(self):
@@ -31,7 +31,7 @@ class App:
         characters = string.ascii_letters + string.punctuation + string.digits
         password = ""
         for x in range(28):
-            password+=choice(characters)
+            password+=secrets.choice(characters)
         self.password_entry.delete(0, END)
         self.password_entry.insert(0, password)
         

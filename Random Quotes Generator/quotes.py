@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import csv
+from security import safe_requests
 
 url='http://quotes.toscrape.com'
 
@@ -27,7 +28,7 @@ try:
         if not next: 
             break
 
-        html=requests.get(url+next.a.attrs['href'])
+        html=safe_requests.get(url+next.a.attrs['href'])
         bs=BeautifulSoup(html.text,'html.parser')
 except:
     print('Unknown Error!!!')

@@ -1,7 +1,8 @@
 # Importing modules
-import os, requests
+import os
 from apscheduler.schedulers.background import BackgroundScheduler
 import telebot
+from security import safe_requests
 
 # Golbal Variables
 CITY_NAME = "Delhi,IN"
@@ -19,7 +20,7 @@ bot = telebot.TeleBot(BOT_TOKEN)
 # get weather data
 def getWeather():
     url = f"https://api.openweathermap.org/data/2.5/weather?q={CITY_NAME}&appid={WEATHER_API_KEY}"
-    response = requests.get(url)
+    response = safe_requests.get(url)
     weather_data = response.json()
 
     weather_text = ""

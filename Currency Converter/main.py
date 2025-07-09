@@ -3,7 +3,7 @@ import requests
 class Currency_convertor:
 	rates = {}
 	def __init__(self, url):
-		data = requests.get(url).json()
+		data = requests.get(url, timeout=60).json()
 		self.rates = data["rates"]
 
 	def convert(self, from_currency, to_currency, amount):

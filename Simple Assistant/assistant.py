@@ -1,6 +1,7 @@
-import pyttsx3,datetime,os,random,requests
+import pyttsx3,datetime,os,requests
 import wikipedia,webbrowser,sys,pywhatkit
 import speech_recognition as sr 
+import secrets
 
 
 engine = pyttsx3.init('sapi5')
@@ -59,7 +60,7 @@ if __name__ == "__main__":
         elif "play music" in query:
             music_dir = 'D:\\Songs'
             songs = os.listdir(music_dir)
-            rd = random.choice(songs)
+            rd = secrets.choice(songs)
             os.startfile(os.path.join(music_dir,rd))
             speak("Playing Music")
 
@@ -119,5 +120,5 @@ if __name__ == "__main__":
         
         elif "what\'s up" in query or 'how are you' in query:
             stMsgs = ['Just doing my thing!', 'I am fine!', 'Nice!', 'I am nice and full of energy']
-            speak(random.choice(stMsgs))
+            speak(secrets.choice(stMsgs))
 
